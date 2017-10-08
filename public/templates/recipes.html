@@ -8,7 +8,7 @@
   <div class="grid-70">
     <div class="flush-right">
       <!-- TODO Add a directive to this button in order to handle when the user clicks to add a new recipe. -->
-      <button ng-click="addRecipe()">+ Add Recipe</button>
+      <button ng-click="addRecipe(); setting(true)">+ Add Recipe</button>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
   for each recipe to display. Also, add a directive to this div element so that it only displays when there are recipes to display. -->
 <div class="grid-100 row addHover" ng-repeat="recipe in recipes" ng-if="recipes.length > 0">
   <!-- TODO Replace this anchor element's href attribute with a directive so that you can route the user to the Recipe Detail screen when they click on a row. -->
-  <a href="#!/edit/{{recipe._id}}" ng-click="goToRecipesa(recipe);">
+  <a href="#!/edit/{{recipe._id}}" ng-click="goToRecipesa(recipe); setting(false)">
     <div class="grid-70">
       <p>
         <!-- TODO Add binding expressions here in order to display information about the recipe. -->
@@ -38,7 +38,7 @@
       <div class="flush-right">
         <p>
           <!-- TODO Replace this anchor element's href attribute with a directive so that you can route the user to the Recipe Detail screen when they click on the 'Edit' link. -->
-          <a ng-href="#!/edit/{{recipe._id}}"> <img src="images/edit.svg" height="12px"> Edit </a>
+          <a ng-href="#!/edit/{{recipe._id}}" ng-click="setting(true)"> <img src="images/edit.svg" height="12px"> Edit </a>
           <!-- TODO Add a directive to this anchor element so that you can delete the recipe when the user clicks on the 'Delete' link. -->
           <a class="no-action-link" ng-click="deleteRecipe(recipe, $index)"> <img src="images/delete.svg" height="12px"> Delete </a>
         </p>

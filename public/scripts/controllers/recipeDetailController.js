@@ -1,8 +1,22 @@
-(function () {
+// (function () {
   'use strict';
 
   angular.module('app')
     .controller('RecipeDetailController', function($scope, dataService, $location, $routeParams) {
+
+      if (dataService.isEditing.setting == undefined) {
+        $scope.setting = false;
+        console.log($scope.setting);
+      } else {
+        $scope.setting = dataService.isEditing.setting;
+        console.log($scope.setting);
+      }
+
+      $scope.setting = function(status) {
+        dataService.isEditing.setting = status;
+        $scope.setting = dataService.isEditing(status).setting;
+        console.log($scope.setting);
+      }
 
       // display recipe that already exists
       if($location.url() === '/edit/' + $routeParams.id){
@@ -66,6 +80,8 @@
       };
 
       $scope.cancelBtn = function() {
+        // set editing back to false
+        $scope.editing = false;
         // redirect to home page
         $location.url('/');
       };
@@ -76,4 +92,4 @@
         $scope.recipe.steps = [];
 
     })
-})();
+// })();

@@ -1,8 +1,24 @@
-(function () {
+// (function () {
   'use strict';
 
   angular.module('app')
     .controller('RecipesController', function($scope, dataService, $location) {
+
+      // $scope.setting = dataService.isEditing(false).setting;
+
+      if (dataService.isEditing.setting == undefined) {
+        $scope.setting = false;
+        console.log($scope.setting);
+      } else{
+        $scope.setting = dataService.isEditing.setting;
+        console.log($scope.setting);
+      }
+
+      $scope.setting = function(status) {
+        dataService.isEditing.setting = status;
+        $scope.setting = dataService.isEditing(status).setting;
+        console.log($scope.setting);
+      }
 
       // Gets all of the recipes
       dataService.allRecipes(function(response) {
@@ -57,4 +73,4 @@
       };
 
     })
-})();
+// })();

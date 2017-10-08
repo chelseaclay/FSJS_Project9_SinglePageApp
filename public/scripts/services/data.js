@@ -50,5 +50,11 @@
           .then(callback)
       };
 
+      this.isEditing = function(status) {
+      	return {
+          setting: status
+        };
+      }
+
     });
 })();
