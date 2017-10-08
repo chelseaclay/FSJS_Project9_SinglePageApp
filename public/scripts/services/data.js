@@ -33,27 +33,29 @@
       };
 
       // Gets the recipe for the specified ID
-      this.recipeForID = function(callback) {
-        $http.get('http://localhost:5000/api/recipes/{id}')
+      this.recipeForID = function(id, callback) {
+        $http.get(`http://localhost:5000/api/recipes/${id}`)
           .then(callback)
       };
 
       // Updates the recipe for the specified ID
-      this.updateRecipeForID = function(callback) {
-        $http.put('http://localhost:5000/api/recipes/{id}')
-          .then(callback)
+      this.updateRecipeForID = function(recipe) {
+        $http.put(`http://localhost:5000/api/recipes/${recipe._id}`, recipe)
       };
 
       // Adds a recipe
-      this.addRecipe = function(callback) {
-        $http.post('http://localhost:5000/api/recipes')
-          .then(callback)
+      this.addRecipe = function(recipe) {
+        $http.post('http://localhost:5000/api/recipes', recipe)
       };
 
       // Deletes the recipe for the specified ID
       this.deleteRecipeForID = function(recipe, callback) {
         $http.delete(`http://localhost:5000/api/recipes/${recipe._id}`)
           .then(callback)
+      };
+
+      this.isEditing = function(status) {
+        return status;
       };
 
     });
