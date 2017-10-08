@@ -6,7 +6,6 @@
 
       // Gets all of the recipes
       dataService.allRecipes(function(response) {
-        // console.log(response.data);
         $scope.recipes = response.data;
       });
 

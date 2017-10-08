@@ -3,10 +3,6 @@
 
   angular.module('app')
     .service('dataService', function($http) {
-      // test for set up
-      this.helloWorld = function() {
-        console.log("This is the data service's method!!");
-      };
 
       // Gets all of the recipes
       this.allRecipes = function(callback) {
@@ -52,10 +48,6 @@
       this.deleteRecipeForID = function(recipe, callback) {
         $http.delete(`http://localhost:5000/api/recipes/${recipe._id}`)
           .then(callback)
-      };
-
-      this.isEditing = function(status) {
-        return status;
       };
 
     });

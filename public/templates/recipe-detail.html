@@ -8,7 +8,7 @@
     <div class="flush-right">
       <!-- TODO Add directives to both the "Save Recipe" and "Cancel" buttons in order to handle user clicks. -->
       <button ng-click="saveRecipe(recipe)">Save Recipe</button>
-      <button class="secondary" ng-click="cancelBtn(); isEditing(false)">Cancel</button>
+      <button class="secondary" ng-click="cancelBtn();">Cancel</button>
     </div>
   </div>
 </div>
@@ -23,8 +23,7 @@
   <div class="grid-40">
     <p>
       <!-- TODO Add a directive to this input element to bind its value to the recipe model's `name` property. -->
-      <input type="text" ng-model="recipe.name" name="name" ng-if="editing">
-      <p ng-if="!editing">{{recipe.name}}</p>
+      <input type="text" ng-model="recipe.name" name="name">
     </p>
   </div>
 </div>
