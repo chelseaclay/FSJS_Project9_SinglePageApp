@@ -1,22 +1,20 @@
-// (function () {
+(function () {
   'use strict';
 
   angular.module('app')
-    .controller('RecipeDetailController', function($scope, dataService, $location, $routeParams) {
+    .controller('RecipeDetailController', function($scope, dataService, $location, $routeParams, share) {
 
-      if (dataService.isEditing.setting == undefined) {
-        $scope.setting = false;
-        console.log($scope.setting);
-      } else {
-        $scope.setting = dataService.isEditing.setting;
-        console.log($scope.setting);
-      }
+      $scope.editing = share.editing;
 
-      $scope.setting = function(status) {
-        dataService.isEditing.setting = status;
-        $scope.setting = dataService.isEditing(status).setting;
-        console.log($scope.setting);
-      }
+      $scope.setting = function(editing) {
+        if(editing === true) {
+          share.editing = true;
+          $scope.editing = share.editing;
+        } else {
+          share.editing = false;
+          $scope.editing = share.editing;
+        }
+      };
 
       // display recipe that already exists
       if($location.url() === '/edit/' + $routeParams.id){
@@ -92,4 +90,4 @@
         $scope.recipe.steps = [];
 
     })
-// })();
+})();

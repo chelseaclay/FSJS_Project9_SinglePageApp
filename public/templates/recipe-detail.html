@@ -7,8 +7,8 @@
   <div class="grid-50">
     <div class="flush-right">
       <!-- TODO Add directives to both the "Save Recipe" and "Cancel" buttons in order to handle user clicks. -->
-      <button ng-click="setting(true)" ng-if="!setting">Edit Recipe</button>
-      <button ng-click="saveRecipe(recipe)" ng-if="setting">Save Recipe</button>
+      <button ng-click="setting(true)" ng-if="!editing">Edit Recipe</button>
+      <button ng-click="saveRecipe(recipe)" ng-if="editing">Save Recipe</button>
       <button class="secondary" ng-click="cancelBtn()">Cancel</button>
     </div>
   </div>
@@ -24,8 +24,8 @@
   <div class="grid-40">
     <p>
       <!-- TODO Add a directive to this input element to bind its value to the recipe model's `name` property. -->
-      <input type="text" ng-model="recipe.name" name="name" ng-if="setting">
-      <p ng-if="!setting">{{recipe.name}}</p>
+      <input type="text" ng-model="recipe.name" name="name" ng-if="editing">
+      <p ng-if="!editing">{{recipe.name}}</p>
     </p>
   </div>
 </div>
@@ -40,8 +40,8 @@
   <div class="grid-60">
     <p>
       <!-- TODO Add a directive to this textarea element to bind its content to the recipe model's `description` property. -->
-      <textarea ng-model="recipe.description" name="description" ng-if="setting"></textarea>
-      <p ng-if="!setting">{{recipe.description}}</p>
+      <textarea ng-model="recipe.description" name="description" ng-if="editing"></textarea>
+      <p ng-if="!editing">{{recipe.description}}</p>
     </p>
   </div>
 </div>
@@ -56,10 +56,10 @@
   <div class="grid-30">
     <p>
       <!-- TODO Add directives to this select element to bind its value to the recipe model's `category` property and to populate the list with the categories from the database. -->
-      <select ng-model="recipe.category" ng-init="category[0]"  ng-options="category.name as category.name for category in allCategories" ng-if="setting">
+      <select ng-model="recipe.category" ng-init="category[0]"  ng-options="category.name as category.name for category in allCategories" ng-if="editing">
         <option value="">All Categories</option>
       </select>
-      <p ng-if="!setting">{{recipe.category}}</p>
+      <p ng-if="!editing">{{recipe.category}}</p>
     </p>
   </div>
 </div>
@@ -74,8 +74,8 @@
   <div class="grid-20">
     <p>
       <!-- TODO Add a directive to this input element to bind its value to the recipe model's `prepTime` property. -->
-      <input type="number" ng-model="recipe.prepTime" ng-if="setting">
-      <p ng-if="!setting">{{recipe.prepTime}}</p>
+      <input type="number" ng-model="recipe.prepTime" ng-if="editing">
+      <p ng-if="!editing">{{recipe.prepTime}}</p>
     </p>
   </div>
 </div>
@@ -90,8 +90,8 @@
   <div class="grid-20">
     <p>
       <!-- TODO Add a directive to this input element to bind its value to the recipe model's `cookTime` property. -->
-      <input type="number" ng-model="recipe.cookTime" ng-if="setting">
-      <p ng-if="!setting">{{recipe.cookTime}}</p>
+      <input type="number" ng-model="recipe.cookTime" ng-if="editing">
+      <p ng-if="!editing">{{recipe.cookTime}}</p>
     </p>
   </div>
 </div>
@@ -124,30 +124,30 @@
     <div class="prefix-20 grid-30">
       <p>
         <!-- TODO Add directives to this select element to bind its value to the recipe ingredient model's `foodItem` property and to populate the list with the food items from the database. -->
-        <select ng-model="ingredient.foodItem" ng-init="foodItem[0]" ng-options="foodItem.name as foodItem.name for foodItem in allFood"  ng-if="setting">
+        <select ng-model="ingredient.foodItem" ng-init="foodItem[0]" ng-options="foodItem.name as foodItem.name for foodItem in allFood"  ng-if="editing">
           <option value="">Select Item</option>
         </select>
-        <p ng-if="!setting">{{ingredient.foodItem}}</p>
+        <p ng-if="!editing">{{ingredient.foodItem}}</p>
       </p>
     </div>
     <div class="grid-30">
       <p>
         <!-- TODO Add a directive to this input element to bind its value to the recipe ingredient model's `condition` property. -->
-        <input type="text" ng-model="ingredient.condition" ng-if="setting">
-        <p ng-if="!setting">{{ingredient.condition}}</p>
+        <input type="text" ng-model="ingredient.condition" ng-if="editing">
+        <p ng-if="!editing">{{ingredient.condition}}</p>
       </p>
     </div>
     <div class="grid-15">
       <p>
         <!-- TODO Add a directive to this input element to bind its value to the recipe ingredient model's `amount` property. -->
-        <input type="text" ng-model="ingredient.amount" ng-if="setting">
-        <p ng-if="!setting">{{ingredient.amount}}</p>
+        <input type="text" ng-model="ingredient.amount" ng-if="editing">
+        <p ng-if="!editing">{{ingredient.amount}}</p>
       </p>
     </div>
     <div class="grid-5 pad-top">
       <p class="flush-right">
         <!-- TODO Add a directive to this anchor element so that you can delete the recipe ingredient when the user clicks on the 'Delete' link. -->
-        <a class="no-action-link" ng-click="deleteIngredient($index)" ng-if="setting"> <img src="images/delete.svg" height="12px"> </a>
+        <a class="no-action-link" ng-click="deleteIngredient($index)" ng-if="editing"> <img src="images/delete.svg" height="12px"> </a>
       </p>
     </div>
   </div>
@@ -155,7 +155,7 @@
   <div class="prefix-20 grid-80 add-row">
     <p>
       <!-- TODO Add a directive to this button in order to handle when the user clicks to add a new recipe ingredient. -->
-      <button ng-click="addIngredient(recipe)" ng-if="setting">+ Add Another Ingredient</button>
+      <button ng-click="addIngredient(recipe)" ng-if="editing">+ Add Another Ingredient</button>
     </p>
   </div>
 
@@ -179,14 +179,14 @@
     <div class="prefix-20 grid-75">
       <p>
         <!-- TODO Add a directive to this input element to bind its value to the recipe step model's `description` property. -->
-        <input type="text" ng-model="step.description" ng-if="setting">
-        <p ng-if="!setting">{{step.description}}</p>
+        <input type="text" ng-model="step.description" ng-if="editing">
+        <p ng-if="!editing">{{step.description}}</p>
       </p>
     </div>
     <div class="grid-5 pad-top">
       <p class="flush-right">
         <!-- TODO Add a directive to this anchor element so that you can delete the recipe step when the user clicks on the 'Delete' link. -->
-        <a class="no-action-link" ng-click="deleteStep($index)" ng-if="setting"> <img src="images/delete.svg" height="12px"> </a>
+        <a class="no-action-link" ng-click="deleteStep($index)" ng-if="editing"> <img src="images/delete.svg" height="12px"> </a>
       </p>
     </div>
   </div>
@@ -194,7 +194,7 @@
   <div class="prefix-20 grid-80 add-row">
     <p>
      <!-- TODO Add a directive to this button in order to handle when the user clicks to add a new recipe step. -->
-     <button ng-click="addStep(recipe)" ng-if="setting">+ Add Another Step</button>
+     <button ng-click="addStep(recipe)" ng-if="editing">+ Add Another Step</button>
     </p>
   </div>
 
