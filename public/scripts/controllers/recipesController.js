@@ -17,6 +17,7 @@
       // Gets all of the recipes
       dataService.allRecipes(function(response) {
         $scope.recipes = response.data;
+        console.log(response.data);
       });
 
       // Gets all of the categories
@@ -26,16 +27,8 @@
 
       // The list of recipes can be filtered by the selected category
       $scope.getRecipesForCategory = function (category) {
-        var selectMenu = document.querySelector('select');
-        var selectedOption = selectMenu.options[selectMenu.selectedIndex].text;
-
-        // If all categories is selected
-        if(selectedOption === 'All Categories') {
-          dataService.allRecipes(function(response) {
-            $scope.recipes = response.data;
-          });
-        // if a category is selected other than all categories
-        } else if(category){
+        // // if a category is selected
+        if(category){
           // Gets all of the recipes for the specified category
           dataService.allRecipesForCategory(category, function(response) {
             $scope.recipes = response.data;

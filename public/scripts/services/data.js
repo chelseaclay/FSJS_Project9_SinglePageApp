@@ -41,7 +41,7 @@
 
       // Adds a recipe
       this.addRecipe = function(recipe) {
-        $http.post('http://localhost:5000/api/recipes', recipe)
+        $http.post('http://localhost:5000/api/recipes/', recipe)
       };
 
       // Deletes the recipe for the specified ID
