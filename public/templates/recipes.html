@@ -17,7 +17,7 @@
   </div>
 </div>
 <div class="grid-100 row addHover" ng-repeat="recipe in recipes" ng-if="recipes.length > 0">
-  <a href="#!/edit/{{recipe._id}}" ng-click="goToRecipesa(recipe); setting(false)">
+  <a href="#!/edit/{{recipe._id}}" ng-click="updateRecipeForID($index); setting(false)">
     <div class="grid-70">
       <p>
         <strong>{{recipe.name}}:</strong> {{recipe.description}}
@@ -28,7 +28,7 @@
     <div class="grid-30">
       <div class="flush-right">
         <p>
-          <a ng-href="#!/edit/{{recipe._id}}" ng-click="setting(true)"> <img src="images/edit.svg" height="12px"> Edit </a>
+          <a ng-href="#!/edit/{{recipe._id}}" ng-click="updateRecipeForID($index); setting(true)"> <img src="images/edit.svg" height="12px"> Edit </a>
           <a class="no-action-link" ng-click="deleteRecipe(recipe, $index)"> <img src="images/delete.svg" height="12px"> Delete </a>
         </p>
       </div>
