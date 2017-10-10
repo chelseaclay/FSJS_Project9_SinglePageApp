@@ -17,7 +17,6 @@
       // Gets all of the recipes
       dataService.allRecipes(function(response) {
         $scope.recipes = response.data;
-        console.log(response.data);
       });
 
       // Gets all of the categories
